@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from "./components/Layout/Header";
+import Footer from "./components/Layout/Footer";
+import Sidebar from "./components/Layout/Sidebar";
+import Dashboard from './screens/Dashboard';
+import Users from './screens/Users';
+import Products from './screens/Products';
+import Orders from './screens/Orders';
+// Import the new screens
+import ManageProductsScreen from './screens/ManageProductsScreen';
+import AddProductScreen from './screens/AddProductScreen';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+        <div style={{display: 'flex'}}>
+          <Sidebar />
+          <div style={{flexGrow: 1}}>
+            <Header />
+            <main style={{padding: '20px'}}>
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/users" element={<Users />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/orders" element={<Orders />} />
+                {/* Add routes for the new screens */}
+                <Route path="/manage-products" element={<ManageProductsScreen />} />
+                <Route path="/add-product" element={<AddProductScreen />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </div>
+      </Router>
   );
 }
 
