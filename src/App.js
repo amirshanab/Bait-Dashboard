@@ -2,35 +2,33 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from "./components/Layout/Header";
 import Footer from "./components/Layout/Footer";
-import Sidebar from "./components/Layout/Sidebar";
+import Sidebar from "./components/Layout/sidebar/Sidebar";
 import Dashboard from './screens/Dashboard';
 import Users from './screens/Users';
 import Products from './screens/Products';
 import Orders from './screens/Orders';
-// Import the new screens
-import ManageProductsScreen from './screens/ManageProductsScreen';
+import ManageProductsScreen from './screens/manageProductScreen/ManageProductsScreen';
 import AddProductScreen from './screens/AddProductScreen';
 
 function App() {
   return (
       <Router>
-        <div style={{display: 'flex'}}>
-          <Sidebar />
-          <div style={{flexGrow: 1}}>
-            <Header />
-            <main style={{padding: '20px'}}>
+        <div style={{display: 'flex', flexDirection: 'column', height: '100vh'}}>
+          <Header />
+          <div style={{display: 'flex', flexGrow: 1, overflow: 'hidden'}}>
+            <Sidebar />
+            <main style={{flexGrow: 1, padding: '20px', overflowY: 'auto'}}>
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/users" element={<Users />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/orders" element={<Orders />} />
-                {/* Add routes for the new screens */}
                 <Route path="/manage-products" element={<ManageProductsScreen />} />
                 <Route path="/add-product" element={<AddProductScreen />} />
               </Routes>
             </main>
-            <Footer />
           </div>
+          <Footer />
         </div>
       </Router>
   );
