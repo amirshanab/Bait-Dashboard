@@ -5,7 +5,6 @@ import Footer from "./components/Layout/Footer";
 import Sidebar from "./components/Layout/sidebar/Sidebar";
 import Dashboard from './screens/Dashboard';
 import Users from './screens/Users';
-import Products from './screens/Products';
 import Orders from './screens/Orders';
 import ManageProductsScreen from './screens/manageProductScreen/ManageProductsScreen';
 import AddProductScreen from './screens/AddProductScreen';
@@ -21,7 +20,6 @@ function App() {
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/users" element={<Users />} />
-                <Route path="/products" element={<Products />} />
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/manage-products" element={<ManageProductsScreen />} />
                 <Route path="/add-product" element={<AddProductScreen />} />

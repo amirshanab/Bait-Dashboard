@@ -1,0 +1,103 @@
+/* Overlay covering the entire screen */
+.modalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+/* Modal content styling */
+.modalContent {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%; /* Responsive width */
+    max-width: 500px; /* Maximum width */
+    min-width: 300px; /* Minimum width */
+}
+
+@media (min-width: 768px) {
+    .modalContent {
+        width: 50%; /* Adjust width for larger screens */
+    }
+}
+
+/* Form control styling for general inputs and labels */
+.formControl {
+    margin-bottom: 20px;
+}
+
+.formControl label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold; /* Make labels stand out */
+}
+
+.formControl input,
+.formControl select {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s; /* Smooth transition for border color change */
+}
+
+.formControl input:hover,
+.formControl select:hover {
+    border-color: #007bff; /* Highlight border on hover */
+}
+
+.formControl input:focus,
+.formControl select:focus {
+    border-color: #0056b3; /* Focus color */
+    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.25); /* Focus shadow */
+}
+
+/* Styling for textarea specifically */
+.formControl textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical; /* Allow only vertical resizing */
+    height: 100px; /* Minimum height */
+}
+
+/* Button specific styling */
+.formControl button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    outline: none; /* Remove default focus outline */
+}
+
+.formControl button:focus {
+    outline: 2px solid #0056b3; /* Custom focus outline */
+}
+
+.formControl button[type="button"] {
+    background-color: #6c757d; /* Secondary button color */
+}
+
+/* Ensure content doesn't overflow buttons or inputs */
+.formControl input,
+.formControl select,
+.formControl button {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

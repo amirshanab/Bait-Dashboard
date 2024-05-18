@@ -1,5 +1,7 @@
 import React from 'react';
 import ProductForm from '../components/Productform/ProductForm';
+import { db } from '../firebaseConfig';
+import { collection, setDoc, doc } from 'firebase/firestore';
 
 const styles = {
     screenContainer: {
@@ -13,9 +15,15 @@ const styles = {
 };
 
 const AddProductScreen = () => {
-    const handleAddProduct = (product) => {
-        // API call to add the product
-        console.log(product);
+    const handleAddProduct = async (product) => {
+        try {
+            // Use the product's Name field as the document ID
+            const productRef = doc(collection(db, "Products"), product.Name);
+            await setDoc(productRef, product);
+            console.log("Product added with Name:", product.Name);
+        } catch (error) {
+            console.error("Error adding product:", error);
+        }
     };
 
     return (
