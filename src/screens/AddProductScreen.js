@@ -17,10 +17,10 @@ const styles = {
 const AddProductScreen = () => {
     const handleAddProduct = async (product) => {
         try {
-            // Use the product's Name field as the document ID
-            const productRef = doc(collection(db, "Products"), product.Name);
+            // Use the generated UUID as the document ID
+            const productRef = doc(collection(db, "Products"), product.ID);
             await setDoc(productRef, product);
-            console.log("Product added with Name:", product.Name);
+            console.log("Product added with ID:", product.ID);
         } catch (error) {
             console.error("Error adding product:", error);
         }

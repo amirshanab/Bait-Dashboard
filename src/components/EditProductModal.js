@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; // Ensure useEffect is imported
+import React, { useState, useEffect } from 'react';
 import styles from './EditProductModal.module.css';
 
 const EditProductModal = ({ product, isOpen, onClose, onSave }) => {
@@ -53,27 +53,29 @@ const EditProductModal = ({ product, isOpen, onClose, onSave }) => {
                 <form onSubmit={handleSubmit}>
                     <div className={styles.formControl}>
                         <label>Name:</label>
-                        <input name="Name" value={formData.Name} onChange={handleChange} />
+                        <input name="Name" value={formData.Name} onChange={handleChange}/>
                     </div>
                     <div className={styles.formControl}>
                         <label>Price:</label>
-                        <input name="Price" type="number" value={formData.Price} onChange={handleChange} />
+                        <input name="Price" type="number" value={formData.Price} onChange={handleChange}/>
                     </div>
                     <div className={styles.formControl}>
                         <label>Description:</label>
-                        <textarea name="Description" value={formData.Description} onChange={handleChange} rows="3" />
+                        <textarea name="Description" value={formData.Description} onChange={handleChange} rows="3"/>
                     </div>
                     <div className={styles.formControl}>
                         <label>Image URL:</label>
-                        <input name="Image" value={formData.Image} onChange={handleChange} />
+                        <input name="Image" value={formData.Image} onChange={handleChange}/>
                     </div>
-                    <div className={styles.formControl}>
-                        <label>Sold By:</label>
-                        <input type="checkbox" name="Scale" checked={formData.Scale} onChange={handleChange} />
+                    <div>
+                        <label>Sold By Scale?</label>
+                        <input type="checkbox" className={styles.checkbox} name="Scale" checked={formData.Scale}
+                               onChange={handleChange}/>
                     </div>
+
                     <div className={styles.formControl}>
                         <label>Stock:</label>
-                        <input name="Stock" type="number" value={formData.Stock} onChange={handleChange} />
+                        <input name="Stock" type="number" value={formData.Stock} onChange={handleChange}/>
                     </div>
                     <div className={styles.formControl}>
                         <button type="submit">Save Changes</button>

@@ -92,6 +92,12 @@
 .formControl button[type="button"] {
     background-color: #6c757d; /* Secondary button color */
 }
+.checkbox {
+    cursor: pointer; /* Makes it clear the checkbox is interactable */
+    transform: scale(2); /* Scale up the checkbox to make it 50% larger */
+    margin: 15px; /* Add some space around the checkbox for easier interaction */
+}
+
 
 /* Ensure content doesn't overflow buttons or inputs */
 .formControl input,
