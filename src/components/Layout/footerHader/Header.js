@@ -1,5 +1,5 @@
 import React from 'react';
-import {DashColor} from "../../Utils/DashColor";
+import {DashColor} from "../../../Utils/DashColor";
 
 const Header = () => {
     return (

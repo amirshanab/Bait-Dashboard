@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import CategorySelector from '../CategorySelector';
+import CategorySelector from '../catagory selector/CategorySelector';
 import styles from './ProductForm.module.css';
 
 const ProductForm = ({ onSubmit, initialProduct = {} }) => {

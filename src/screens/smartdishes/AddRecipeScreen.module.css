@@ -1,0 +1,37 @@
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.input {
+    margin-bottom: 10px;
+    padding: 8px;
+    font-size: 16px;
+    width: auto; /* Adjust width as necessary */
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.removeBtn, .addBtn, .submitBtn {
+    padding: 8px 16px;
+    margin-top: 5px;
+    cursor: pointer;
+    color: white;
+    background-color: #007bff; /* Bootstrap primary color */
+    border: none;
+    border-radius: 4px;
+}
+
+.removeBtn {
+    background-color: #dc3545; /* Bootstrap danger color */
+}
+
+.addBtn {
+    background-color: #28a745; /* Bootstrap success color */
+}
+

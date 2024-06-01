@@ -5,7 +5,7 @@ import { db } from '../../firebaseConfig';
 import { Link } from 'react-router-dom';
 import styles from './ManageProductsScreen.module.css';
 import {deleteDoc,updateDoc, doc} from "firebase/firestore";
-import EditProductModal from "../../components/EditProductModal";
+import EditProductModal from "../../components/Editproduct/EditProductModal";
 
 const fetchCategories = async () => {
     const categoryCollection = collection(db, 'Categories');

@@ -1,0 +1,27 @@
+.dashboardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    cursor: pointer;
+    text-decoration: none; /* Removes underline from links */
+}
+
+.buttonImage {
+    width: 150px; /* Set a specific size for your images */
+    height: 150px;
+    object-fit: cover; /* Ensures the image covers the area without stretching */
+}
+
+.button span {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
+}
