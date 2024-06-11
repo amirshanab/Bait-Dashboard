@@ -42,7 +42,8 @@ const ManageOrdersScreen = () => {
                         },
                         orderDate,
                         scheduledDelivery,
-                        paymentMethod: orderData.PaymentMethod || 'Unknown' // Ensure field name matches exactly
+                        paymentMethod: orderData.PaymentMethod || 'Unknown', // Ensure field name matches exactly
+                        totalAmount: orderData.totalAmount || 'Unknown'
                     });
                 });
             }
@@ -67,6 +68,16 @@ const ManageOrdersScreen = () => {
             filterOrders(updatedOrders, filterStatus, searchQuery, sortOption);
         } catch (error) {
             console.error('Error updating order status:', error);
+        }
+    };
+
+    const handleStatusButtonClick = (orderId, userId, currentStatus) => {
+        if (currentStatus === 'Done') {
+            if (window.confirm('Are you sure you want to change the status back to Not Delivered?')) {
+                handleStatusChange(orderId, userId, 'Pending');
+            }
+        } else {
+            handleStatusChange(orderId, userId, 'Done');
         }
     };
 
@@ -158,23 +169,19 @@ const ManageOrdersScreen = () => {
                     <li key={order.id} className={styles.orderItem}>
                         <div>
                             <p><strong>Name:</strong> {order.user?.name || 'Unknown'}</p>
-                            <p><strong>Email:</strong> {order.user?.email || 'Unknown'}</p>
                             <p><strong>Phone:</strong> {order.user?.phoneNumber || 'Unknown'}</p>
-                            <p><strong>Order Date:</strong> {order.orderDate}</p>
+                            <p><strong>Payment Method:</strong> {order.paymentMethod}</p>
                             <p><strong>Scheduled Delivery:</strong> {order.scheduledDelivery}</p>
                             <p><strong>Total Amount:</strong> ${order.totalAmount}</p>
-                            <p><strong>Payment Method:</strong> {order.paymentMethod}</p>
-                            <p><strong>Order Status:</strong> {order.OrderStatus || 'Unknown'}</p>
+                        </div>
+                        <div className={styles.buttonContainer}>
+                            <button
+                                onClick={() => handleStatusButtonClick(order.id, order.user.id, order.OrderStatus)}
+                                className={`${styles.statusButton} ${order.OrderStatus === 'Done' ? styles.done : styles.pending}`}>
+                                {order.OrderStatus === 'Pending' ? 'Mark as Delivered' : 'Delivered'}
+                            </button>
                             <button onClick={() => handleOrderClick(order)} className={styles.viewDetailsButton}>View Details</button>
                         </div>
-                        <label className={styles.switch}>
-                            <input
-                                type="checkbox"
-                                checked={order.OrderStatus === 'Done'}
-                                onChange={() => handleStatusChange(order.id, order.user.id, order.OrderStatus === 'Pending' ? 'Done' : 'Pending')}
-                            />
-                            <span className={styles.slider}></span>
-                        </label>
                     </li>
                 ))}
             </ul>

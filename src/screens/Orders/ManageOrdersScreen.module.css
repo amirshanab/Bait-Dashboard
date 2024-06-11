@@ -52,9 +52,14 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     margin-bottom: 10px;
     border-radius: 5px;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 10px; /* Added gap between buttons */
 }
 
 .viewDetailsButton {
@@ -65,54 +70,31 @@
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
-    margin-top: 10px;
+
 }
 
 .viewDetailsButton:hover {
     background-color: #45a049;
 }
 
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
+.statusButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
     cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
+.statusButton.done {
+    background-color: #2196F3; /* Blue for done orders */
 }
 
-input:checked + .slider {
-    background-color: #2196F3;
+.statusButton.pending {
+    background-color: #009688; /* Teal for pending orders */
 }
 
-input:checked + .slider:before {
-    transform: translateX(26px);
+.statusButton:hover {
+    opacity: 0.8;
 }
