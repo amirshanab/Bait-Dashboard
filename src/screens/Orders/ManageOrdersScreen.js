@@ -55,15 +55,28 @@ const ManageOrdersScreen = () => {
         fetchOrders();
     }, []);
 
+
+
     const handleStatusChange = async (orderId, userId, newStatus) => {
-        const orderRef = doc(db, `Users/${userId}/orders`, orderId);
         try {
+            orderId = orderId.toString()
+            console.log('Updating order status:', orderId, userId, newStatus);
+
+
+            // Reference to the specific order document in Firestore
+            const orderRef = doc(collection(db, `Users/${userId}/orders`), orderId);
+
+            // Update the order status in Firestore
             await updateDoc(orderRef, { OrderStatus: newStatus });
+
+            // Update the local orders state
             const updatedOrders = orders.map(order =>
                 order.id === orderId && order.user.id === userId
                     ? { ...order, OrderStatus: newStatus }
                     : order
             );
+
+            // Set the updated orders and apply filtering
             setOrders(updatedOrders);
             filterOrders(updatedOrders, filterStatus, searchQuery, sortOption);
         } catch (error) {
@@ -71,15 +84,19 @@ const ManageOrdersScreen = () => {
         }
     };
 
-    const handleStatusButtonClick = (orderId, userId, currentStatus) => {
+
+    const handleStatusButtonClick = async (orderId, userId, currentStatus) => {
         if (currentStatus === 'Done') {
             if (window.confirm('Are you sure you want to change the status back to Not Delivered?')) {
-                handleStatusChange(orderId, userId, 'Pending');
+                await handleStatusChange(orderId, userId, 'Pending');
             }
         } else {
-            handleStatusChange(orderId, userId, 'Done');
+            await handleStatusChange(orderId, userId, 'Done');
         }
+        // Reload the page to reflect the changes
+        window.location.reload();
     };
+
 
     const handleSearchChange = (event) => {
         const query = event.target.value.toLowerCase();
@@ -169,6 +186,8 @@ const ManageOrdersScreen = () => {
                     <li key={order.id} className={styles.orderItem}>
                         <div>
                             <p><strong>Name:</strong> {order.user?.name || 'Unknown'}</p>
+                            <p><strong>id:</strong> {order.id || 'Unknown'}</p>
+
                             <p><strong>Phone:</strong> {order.user?.phoneNumber || 'Unknown'}</p>
                             <p><strong>Payment Method:</strong> {order.paymentMethod}</p>
                             <p><strong>Scheduled Delivery:</strong> {order.scheduledDelivery}</p>
@@ -177,15 +196,18 @@ const ManageOrdersScreen = () => {
                         <div className={styles.buttonContainer}>
                             <button
                                 onClick={() => handleStatusButtonClick(order.id, order.user.id, order.OrderStatus)}
-                                className={`${styles.statusButton} ${order.OrderStatus === 'Done' ? styles.done : styles.pending}`}>
+                                className={`${styles.statusButton} ${order.OrderStatus === 'Done' ? styles.done : styles.pending}`}
+                            >
                                 {order.OrderStatus === 'Pending' ? 'Mark as Delivered' : 'Delivered'}
                             </button>
-                            <button onClick={() => handleOrderClick(order)} className={styles.viewDetailsButton}>View Details</button>
+                            <button onClick={() => handleOrderClick(order)} className={styles.viewDetailsButton}>View
+                                Details
+                            </button>
                         </div>
                     </li>
                 ))}
             </ul>
-            {selectedOrder && <OrderDetails order={selectedOrder} onClose={handleCloseOrderDetails} />}
+            {selectedOrder && <OrderDetails order={selectedOrder} onClose={handleCloseOrderDetails}/>}
         </div>
     );
 };
