@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 import styles from './OrderDetails.module.css';
+import ProductSelectionModal from '../../components/ProductSelectionModal/ProductSelectionModal'; //
 
 const OrderDetails = ({ order, onClose }) => {
     const [orderDetails, setOrderDetails] = useState(order);
     const [products, setProducts] = useState([]);
+    const [showProductSelection, setShowProductSelection] = useState(false);
+    const [currentItemId, setCurrentItemId] = useState(null);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -29,27 +32,28 @@ const OrderDetails = ({ order, onClose }) => {
         }
     };
 
-    const onReplaceProduct = async (orderId, itemId) => {
-        const newProductName = window.prompt("Enter new product name:");
-        const selectedProduct = products.find(product => product.Name === newProductName);
-        if (selectedProduct) {
-            const updatedItems = orderDetails.items.map(item => item.id === itemId ? {
-                ...item,
-                name: selectedProduct.Name,
-                img: selectedProduct.Image,
-                price: selectedProduct.Price,
-                quantity: item.quantity
-            } : item);
-            const orderRef = doc(db, `Users/${orderDetails.user.id}/orders`, orderId);
-            try {
-                await updateDoc(orderRef, { items: updatedItems });
-                // Update the local state to reflect the change
-                setOrderDetails(prevOrder => ({ ...prevOrder, items: updatedItems }));
-            } catch (error) {
-                console.error('Error replacing product in order:', error);
-            }
-        } else {
-            alert("Product not found");
+    const onReplaceProduct = (itemId) => {
+        setCurrentItemId(itemId);
+        setShowProductSelection(true);
+    };
+
+    const handleProductSelection = async (selectedProduct) => {
+        const updatedItems = orderDetails.items.map(item => item.id === currentItemId ? {
+            ...item,
+            name: selectedProduct.Name,
+            img: selectedProduct.Image,
+            price: selectedProduct.Price,
+            quantity: item.quantity
+        } : item);
+
+        const orderRef = doc(db, `Users/${orderDetails.user.id}/orders`, orderDetails.id);
+        try {
+            await updateDoc(orderRef, { items: updatedItems });
+            // Update the local state to reflect the change
+            setOrderDetails(prevOrder => ({ ...prevOrder, items: updatedItems }));
+            setShowProductSelection(false);
+        } catch (error) {
+            console.error('Error replacing product in order:', error);
         }
     };
 
@@ -70,7 +74,7 @@ const OrderDetails = ({ order, onClose }) => {
                     <h3>Items:</h3>
                     <ul className={styles.itemList}>
                         {orderDetails.items.map((item, index) => (
-                            <li key={index} className={styles.item}>
+                            <li key={item.id} className={styles.item}>
                                 <img src={item.img} alt={item.name} className={styles.itemImage} />
                                 <div className={styles.itemDetails}>
                                     <p><strong>Name:</strong> {item.name}</p>
@@ -85,7 +89,7 @@ const OrderDetails = ({ order, onClose }) => {
                                         Delete
                                     </button>
                                     <button
-                                        onClick={() => onReplaceProduct(orderDetails.id, item.id)}
+                                        onClick={() => onReplaceProduct(item.id)}
                                         className={styles.replaceButton}
                                     >
                                         Replace
@@ -96,6 +100,13 @@ const OrderDetails = ({ order, onClose }) => {
                     </ul>
                 </div>
             </div>
+            {showProductSelection && (
+                <ProductSelectionModal
+                    products={products}
+                    onClose={() => setShowProductSelection(false)}
+                    onSelect={handleProductSelection}
+                />
+            )}
         </div>
     );
 };

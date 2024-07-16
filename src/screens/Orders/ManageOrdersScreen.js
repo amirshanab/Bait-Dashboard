@@ -29,7 +29,7 @@ const ManageOrdersScreen = () => {
 
                     // Check and convert the Timestamp fields
                     const orderDate = orderData.orderDate ? orderData.orderDate.toDate().toString() : 'Unknown';
-                    const scheduledDelivery = orderData.ScheduledDelivery ? orderData.ScheduledDelivery.toDate().toString() : 'Not Scheduled';
+                    const scheduledDelivery = orderData.ScheduledDelivery ? orderData.ScheduledDelivery : 'Not Scheduled';
 
                     allOrders.push({
                         id: orderDoc.id,

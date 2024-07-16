@@ -7,7 +7,7 @@ import Sidebar from "./components/Layout/sidebar/Sidebar";
 import Dashboard from './screens/Homescreen/Dashboard';
 import ManageProductsScreen from './screens/manageProductScreen/ManageProductsScreen';
 import AddProductScreen from './screens/AddProductScreen';
-import AddRecipeScreen from "./screens/smartdishes/AddRecipeScreen";
+import AddDishScreen from "./screens/smartdishes/AddDishScreen";
 import ManageOrdersScreen from './screens/Orders/ManageOrdersScreen';
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/manage-products" element={<ManageProductsScreen />} />
                 <Route path="/add-product" element={<AddProductScreen />} />
-                <Route path="/add-recipe" element={<AddRecipeScreen />} />
+                <Route path="/add-recipe" element={<AddDishScreen />} />
                 <Route path="/manage-orders" element={<ManageOrdersScreen />} />
               </Routes>
             </main>

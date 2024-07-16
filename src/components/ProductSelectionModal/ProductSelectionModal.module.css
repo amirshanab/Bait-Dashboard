@@ -1,0 +1,124 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.container {
+    background-color: #fff;
+    color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 800px; /* Increased width for more space */
+    width: 90%;
+    max-height: 80%; /* Smaller height */
+    overflow-y: auto; /* Scrollable */
+    position: relative;
+}
+
+.heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.searchBar {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.productGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Add gap between items */
+    justify-content: center; /* Center the items */
+}
+
+.productItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 120px; /* Smaller width */
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.productItem:hover {
+    background-color: #e0e0e0;
+}
+
+.productItem.selected {
+    background-color: #d0e8ff;
+}
+
+.productImage {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.productDetails {
+    text-align: center;
+}
+
+.quantityControl {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.quantityButton {
+    padding: 5px;
+    background-color: #ccc;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.quantity {
+    margin: 0 10px;
+}
+
+.doneButton {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.doneButton:hover {
+    background-color: #45a049;
+}
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 50px;
+    cursor: pointer;
+    color: #f44336;
+}
