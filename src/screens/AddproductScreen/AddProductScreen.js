@@ -1,6 +1,6 @@
 import React from 'react';
-import ProductForm from '../components/Productform/ProductForm';
-import { db } from '../firebaseConfig';
+import ProductForm from '../../components/Productform/ProductForm';
+import { db } from '../../firebaseConfig';
 import { collection, setDoc, doc } from 'firebase/firestore';
 
 const styles = {

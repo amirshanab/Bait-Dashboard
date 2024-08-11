@@ -61,7 +61,6 @@ const AnalyticsScreen = () => {
                         }
                     });
 
-                    console.log("Original Order Date:", order.orderDate);
 
                     if (order.orderDate) {
                         let orderDate;
@@ -72,11 +71,9 @@ const AnalyticsScreen = () => {
                             orderDate = new Date(order.orderDate);
                         }
 
-                        console.log("Parsed Order Date:", orderDate);
 
                         if (!isNaN(orderDate)) {
                             const orderMonth = `${orderDate.getFullYear()}-${('0' + (orderDate.getMonth() + 1)).slice(-2)}`;
-                            console.log("Order Month:", orderMonth);
                             if (salesTimeline[orderMonth]) {
                                 salesTimeline[orderMonth] += orderRevenue;
                             } else {
@@ -103,7 +100,6 @@ const AnalyticsScreen = () => {
                 });
             }
 
-            console.log("Final Sales Timeline:", salesTimeline);
 
             setUsers(usersList);
             setDeliveredRevenue(deliveredRevenueTotal);

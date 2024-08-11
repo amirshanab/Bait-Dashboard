@@ -6,7 +6,7 @@ import Footer from "./components/Layout/footerHader/Footer";
 import Sidebar from "./components/Layout/sidebar/Sidebar";
 import Dashboard from './screens/Homescreen/Dashboard';
 import ManageProductsScreen from './screens/manageProductScreen/ManageProductsScreen';
-import AddProductScreen from './screens/AddProductScreen';
+import AddProductScreen from './screens/AddproductScreen/AddProductScreen';
 import AddDishScreen from "./screens/smartdishes/AddDishScreen";
 import ManageOrdersScreen from './screens/Orders/ManageOrdersScreen';
 import AnalyticsScreen from "./screens/AnalyticsScreen/AnalyticsScreen";

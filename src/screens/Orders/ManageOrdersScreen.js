@@ -52,51 +52,59 @@ const ManageOrdersScreen = () => {
             setFilteredOrders(allOrders); // Initialize filtered orders with all orders
         };
 
-        fetchOrders();
+        fetchOrders().then(() => console.log('Orders fetched successfully!'));
     }, []);
-
-
 
     const handleStatusChange = async (orderId, userId, newStatus) => {
         try {
-            orderId = orderId.toString()
-            console.log('Updating order status:', orderId, userId, newStatus);
+            const orderDocRef = doc(db, `Users/${userId}/orders/${orderId}`);
 
+            await updateDoc(orderDocRef, { OrderStatus: newStatus });
 
-            // Reference to the specific order document in Firestore
-            const orderRef = doc(collection(db, `Users/${userId}/orders`), orderId);
-
-            // Update the order status in Firestore
-            await updateDoc(orderRef, { OrderStatus: newStatus });
+            // Log the status update
+            console.log(`Order ${orderId} status updated to: ${newStatus}`);
 
             // Update the local orders state
-            const updatedOrders = orders.map(order =>
-                order.id === orderId && order.user.id === userId
-                    ? { ...order, OrderStatus: newStatus }
-                    : order
+            setOrders(prevOrders =>
+                prevOrders.map(order =>
+                    order.id === orderId && order.user.id === userId
+                        ? { ...order, OrderStatus: newStatus }
+                        : order
+                )
             );
 
-            // Set the updated orders and apply filtering
-            setOrders(updatedOrders);
-            filterOrders(updatedOrders, filterStatus, searchQuery, sortOption);
+            // Ensure that the UI updates immediately
+            setFilteredOrders(prevFilteredOrders =>
+                prevFilteredOrders.map(order =>
+                    order.id === orderId && order.user.id === userId
+                        ? { ...order, OrderStatus: newStatus }
+                        : order
+                ));
+
+            // Update the selectedOrder state if the order was selected
+            if (selectedOrder?.id === orderId) {
+                setSelectedOrder(prevOrder => ({
+                    ...prevOrder,
+                    OrderStatus: newStatus
+                }));
+            }
         } catch (error) {
             console.error('Error updating order status:', error);
         }
     };
 
-
     const handleStatusButtonClick = async (orderId, userId, currentStatus) => {
         if (currentStatus === 'Done') {
-            if (window.confirm('Are you sure you want to change the status back to Not Delivered?')) {
-                await handleStatusChange(orderId, userId, 'Pending');
-            }
-        } else {
-            await handleStatusChange(orderId, userId, 'Done');
+            const confirmChange = window.confirm("Are you sure you want to change the status back to Pending?");
+            if (!confirmChange) return;
         }
-        // Reload the page to reflect the changes
-        window.location.reload();
-    };
 
+        const newStatus = currentStatus === 'Done' ? 'Pending' : 'Done';
+        await handleStatusChange(orderId, userId, newStatus);
+
+        // Force a re-render to ensure the UI reflects the change
+        setOrders([...orders]);
+    };
 
     const handleSearchChange = (event) => {
         const query = event.target.value.toLowerCase();
@@ -181,13 +189,12 @@ const ManageOrdersScreen = () => {
                     <option value="scheduledDelivery">Scheduled Delivery</option>
                 </select>
             </div>
-            <ul className={styles.orderList}>
+            <div className={styles.orderGrid}>
                 {filteredOrders.map(order => (
-                    <li key={order.id} className={styles.orderItem}>
+                    <div key={order.id} className={styles.orderCard}>
                         <div>
                             <p><strong>Name:</strong> {order.user?.name || 'Unknown'}</p>
-                            <p><strong>id:</strong> {order.id || 'Unknown'}</p>
-
+                            <p><strong>Order ID:</strong> {order.id || 'Unknown'}</p>
                             <p><strong>Phone:</strong> {order.user?.phoneNumber || 'Unknown'}</p>
                             <p><strong>Payment Method:</strong> {order.paymentMethod}</p>
                             <p><strong>Scheduled Delivery:</strong> {order.scheduledDelivery}</p>
@@ -200,14 +207,14 @@ const ManageOrdersScreen = () => {
                             >
                                 {order.OrderStatus === 'Pending' ? 'Mark as Delivered' : 'Delivered'}
                             </button>
-                            <button onClick={() => handleOrderClick(order)} className={styles.viewDetailsButton}>View
-                                Details
+                            <button onClick={() => handleOrderClick(order)} className={styles.viewDetailsButton}>
+                                View Details
                             </button>
                         </div>
-                    </li>
+                    </div>
                 ))}
-            </ul>
-            {selectedOrder && <OrderDetails order={selectedOrder} onClose={handleCloseOrderDetails}/>}
+            </div>
+            {selectedOrder && <OrderDetails order={selectedOrder} onClose={handleCloseOrderDetails} />}
         </div>
     );
 };

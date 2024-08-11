@@ -1,3 +1,15 @@
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.heading {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
 .searchBar {
     width: 100%;
     padding: 10px;
@@ -8,8 +20,9 @@
 
 .filterContainer {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-bottom: 20px;
+    gap: 10px;
 }
 
 .filterButton {
@@ -20,7 +33,6 @@
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
-    margin-right: 10px;
 }
 
 .filterButton:hover {
@@ -28,12 +40,13 @@
 }
 
 .filterButton.active {
-    background-color: #3e8e41; /* Darker green for the active button */
+    background-color: #3e8e41;
 }
 
 .sortContainer {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-bottom: 20px;
 }
 
@@ -42,39 +55,24 @@
     font-size: 16px;
 }
 
-.orderList {
-    list-style: none;
-    padding: 0;
+.orderGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
 }
 
-.orderItem {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
+.orderCard {
     border: 2px solid #ccc;
-    margin-bottom: 10px;
+    padding: 20px;
     border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .buttonContainer {
     display: flex;
-    gap: 10px; /* Added gap between buttons */
-}
-
-.viewDetailsButton {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-
-}
-
-.viewDetailsButton:hover {
-    background-color: #45a049;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
 .statusButton {
@@ -88,13 +86,27 @@
 }
 
 .statusButton.done {
-    background-color: #2196F3; /* Blue for done orders */
+    background-color: #2196F3;
 }
 
 .statusButton.pending {
-    background-color: #009688; /* Teal for pending orders */
+    background-color: #7a7a7a;
 }
 
 .statusButton:hover {
     opacity: 0.8;
+}
+
+.viewDetailsButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.viewDetailsButton:hover {
+    background-color: #45a049;
 }
