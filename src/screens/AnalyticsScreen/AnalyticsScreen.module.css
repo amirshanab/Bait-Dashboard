@@ -1,0 +1,85 @@
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.heading {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.chartContainer {
+    flex: 1;
+    margin: 0 20px;
+    text-align: center;
+}
+
+.chartContainer h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.pieChart {
+    width: 300px;
+    margin: 0 auto;
+}
+
+.lineChart {
+    height: 400px;
+    margin: 0 auto;
+}
+
+.tableContainer {
+    margin-bottom: 40px;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.tableWrapper {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.tableContainer h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.table th, .table td {
+    padding: 6px 6px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table tr:hover {
+    background-color: #f1f1f1;
+}

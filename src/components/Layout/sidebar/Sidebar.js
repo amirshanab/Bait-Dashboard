@@ -7,9 +7,9 @@ const Sidebar = () => {
         <aside className={styles.sidebar}>
             <ul className={styles.linkList}>
                 <li className={styles.linkItem}><Link to="/" className={styles.link}>Dashboard</Link></li>
-                <li className={styles.linkItem}><Link to="/users" className={styles.link}>Users</Link></li>
-                <li className={styles.linkItem}><Link to="/manage-products" className={styles.link}>Manage
-                    Products</Link></li>
+                <li className={styles.linkItem}><Link to="/analytics" className={styles.link}>Analytics</Link></li>
+                <li className={styles.linkItem}><Link to="/manage-products" className={styles.link}>Manage Products</Link></li>
+                <li className={styles.linkItem}><Link to="/manage-users" className={styles.link}>Manage Users</Link></li>
                 <li className={styles.linkItem}><Link to="/add-product" className={styles.link}>Add Product</Link></li>
                 <li className={styles.linkItem}><Link to="/add-recipe" className={styles.link}>Add Dish</Link></li>
                 <li className={styles.linkItem}><Link to="/manage-orders" className={styles.link}>Manage Orders</Link>

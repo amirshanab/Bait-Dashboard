@@ -1,61 +1,100 @@
 import React, { useState, useEffect } from 'react';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { collection, getDocs, addDoc } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 import ProductSelectionModal from '../../components/ProductSelectionModal/ProductSelectionModal';
 import styles from './AddDishScreen.css';
 
 const AddDishScreen = () => {
     const [regions, setRegions] = useState([]);
-    const [selectedRegion, setSelectedRegion] = useState('');
-    const [regionImage, setRegionImage] = useState('');
+    const [selectedRegionId, setSelectedRegionId] = useState('');
+    const [newRegionName, setNewRegionName] = useState('');
+    const [newRegionImage, setNewRegionImage] = useState('');
     const [dishName, setDishName] = useState('');
     const [dishImage, setDishImage] = useState('');
-    const [description, setDescription] = useState(''); // New description field
+    const [description, setDescription] = useState('');
     const [ingredients, setIngredients] = useState([]);
     const [showProductSelection, setShowProductSelection] = useState(false);
     const [products, setProducts] = useState([]);
+    const [addNewRegion, setAddNewRegion] = useState(false);
 
     useEffect(() => {
+        const fetchRegions = async () => {
+            const regionsCollection = collection(db, 'Regions');
+            const regionsSnapshot = await getDocs(regionsCollection);
+            const regionsList = regionsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setRegions(regionsList);
+        };
+
         const fetchProducts = async () => {
             const productsCollection = collection(db, 'Products');
             const productsSnapshot = await getDocs(productsCollection);
             const productsList = productsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
             setProducts(productsList);
         };
+
+        fetchRegions();
         fetchProducts();
     }, []);
 
     const handleAddDish = async () => {
-        try {
-            const regionDocRef = await addDoc(collection(db, 'Regions'), {
-                name: selectedRegion,
-                image: regionImage,
-            });
+        let regionId = selectedRegionId;
 
-            await addDoc(collection(db, `Regions/${regionDocRef.id}/Dishes`), {
-                name: dishName,
-                image: dishImage,
-                description, // Include description in the document
+        // Check if a new region is being added
+        if (addNewRegion && newRegionName) {
+            // Check if a region with the same name already exists
+            const existingRegion = regions.find(region => region.name.toLowerCase() === newRegionName.toLowerCase());
+
+            if (existingRegion) {
+                regionId = existingRegion.id;
+            } else {
+                // Add the new region with name and image
+                const newRegionRef = await addDoc(collection(db, 'Regions'), {
+                    name: newRegionName,
+                    image: newRegionImage
+                });
+                regionId = newRegionRef.id;
+
+                // Update the local regions state
+                setRegions([...regions, { id: regionId, name: newRegionName, image: newRegionImage }]);
+            }
+        }
+
+        if (!regionId) {
+            alert('Please select or add a region.');
+            return;
+        }
+
+        try {
+            await addDoc(collection(db, `Regions/${regionId}/Dishes`), {
+                Name: dishName,
+                Image: dishImage,
+                description,
                 ingredients: ingredients.map(item => ({
-                    id: item.id,
-                    name: item.Name,
-                    img: item.Image,
-                    price: item.Price,
-                    quantity: item.quantity // Include quantity in the document
+                    ID: item.id,
+                    Name: item.Name,
+                    Image: item.Image,
+                    Price: item.Price,
+                    quantity: item.quantity
                 })),
             });
 
             alert('Dish added successfully!');
             // Reset form
-            setSelectedRegion('');
-            setRegionImage('');
-            setDishName('');
-            setDishImage('');
-            setDescription(''); // Reset description field
-            setIngredients([]);
+            resetForm();
         } catch (error) {
             console.error('Error adding dish:', error);
         }
+    };
+
+    const resetForm = () => {
+        setSelectedRegionId('');
+        setNewRegionName('');
+        setNewRegionImage('');
+        setDishName('');
+        setDishImage('');
+        setDescription('');
+        setIngredients([]);
+        setAddNewRegion(false);
     };
 
     const handleProductSelection = (selectedProducts) => {
@@ -67,20 +106,42 @@ const AddDishScreen = () => {
         <div className={styles.container}>
             <h2 className={styles.heading}>Add New Dish</h2>
             <div className={styles.formGroup}>
-                <label>Region Name</label>
-                <input
-                    type="text"
-                    value={selectedRegion}
-                    onChange={(e) => setSelectedRegion(e.target.value)}
-                />
-            </div>
-            <div className={styles.formGroup}>
-                <label>Region Image URL</label>
-                <input
-                    type="text"
-                    value={regionImage}
-                    onChange={(e) => setRegionImage(e.target.value)}
-                />
+                <label>Region</label>
+                <div>
+                    <select
+                        value={selectedRegionId}
+                        onChange={(e) => setSelectedRegionId(e.target.value)}
+                        disabled={addNewRegion}
+                    >
+                        <option value="">Select a region</option>
+                        {regions.map(region => (
+                            <option key={region.id} value={region.id}>{region.name}</option>
+                        ))}
+                    </select>
+                    <div className={styles.checkboxContainer}>
+                        <label>
+                            <input type="checkbox" checked={addNewRegion} onChange={() => setAddNewRegion(!addNewRegion)} /> Add new region
+                        </label>
+                        {addNewRegion && (
+                            <>
+                                <input
+                                    type="text"
+                                    value={newRegionName}
+                                    onChange={(e) => setNewRegionName(e.target.value)}
+                                    placeholder="Enter new region name"
+                                    className={styles.newRegionInput}
+                                />
+                                <input
+                                    type="text"
+                                    value={newRegionImage}
+                                    onChange={(e) => setNewRegionImage(e.target.value)}
+                                    placeholder="Enter new region image URL"
+                                    className={styles.newRegionInput}
+                                />
+                            </>
+                        )}
+                    </div>
+                </div>
             </div>
             <div className={styles.formGroup}>
                 <label>Dish Name</label>
@@ -112,7 +173,7 @@ const AddDishScreen = () => {
                 <ul className={styles.ingredientList}>
                     {ingredients.map((item) => (
                         <li key={item.id}>
-                            <img src={item.Image} alt={item.Name} className={'ingredientImage'} />
+                            <img src={item.Image} alt={item.Name} className={styles.ingredientImage} />
                             <p>{item.Name}</p>
                             <p>Quantity: {item.quantity}</p>
                         </li>

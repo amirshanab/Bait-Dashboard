@@ -9,6 +9,8 @@ import ManageProductsScreen from './screens/manageProductScreen/ManageProductsSc
 import AddProductScreen from './screens/AddProductScreen';
 import AddDishScreen from "./screens/smartdishes/AddDishScreen";
 import ManageOrdersScreen from './screens/Orders/ManageOrdersScreen';
+import AnalyticsScreen from "./screens/AnalyticsScreen/AnalyticsScreen";
+import ManageUsersScreen from "./screens/UserScreen/ManageUsersScreen";
 function App() {
   return (
       <Router>
@@ -20,9 +22,11 @@ function App() {
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/manage-products" element={<ManageProductsScreen />} />
+                <Route path="/manage-users" element={<ManageUsersScreen />} />
                 <Route path="/add-product" element={<AddProductScreen />} />
                 <Route path="/add-recipe" element={<AddDishScreen />} />
                 <Route path="/manage-orders" element={<ManageOrdersScreen />} />
+                <Route path="/analytics" element={<AnalyticsScreen />} />
               </Routes>
             </main>
           </div>
