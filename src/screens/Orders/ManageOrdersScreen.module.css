@@ -1,6 +1,6 @@
 .container {
     padding: 20px;
-    max-width: 1200px;
+    max-width: 2000px;
     margin: 0 auto;
 }
 
@@ -19,6 +19,7 @@
 }
 
 .filterContainer {
+    width: 100%;
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
