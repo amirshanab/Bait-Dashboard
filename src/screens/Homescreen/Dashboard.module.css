@@ -1,27 +1,39 @@
 .dashboardContainer {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-wrap: wrap; /* Allows items to wrap to the next line */
+    justify-content: flex-start; /* Center the grid items */
+    gap: 20px; /* Space between buttons */
     padding: 20px;
+    max-width: 1300px; /* Adjusted max width to accommodate 4 buttons */
+    margin: 0 auto; /* Center the container within the page */
 }
 
 .button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10px;
-    cursor: pointer;
-    text-decoration: none; /* Removes underline from links */
+    justify-content: center;
+    width: 300px; /* Adjusted width to fit 4 buttons in a row */
+    height: 300px; /* Adjusted height to match the new width */
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.button:hover {
+    transform: translateY(-12px); /* Add a hover effect */
 }
 
 .buttonImage {
-    width: 150px; /* Set a specific size for your images */
-    height: 150px;
-    object-fit: cover; /* Ensures the image covers the area without stretching */
+    width: 80px; /* Adjust the size of the image */
+    height: 80px;
+    margin-bottom: 10px;
 }
 
-.button span {
-    margin-top: 10px;
-    font-size: 18px;
+span {
+    font-size: 16px;
+    font-weight: bold;
     color: #333;
 }

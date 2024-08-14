@@ -1,0 +1,263 @@
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.emptyDiv {
+    width: 16%;
+}
+
+.backButton {
+    height: 60px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.backButton:hover {
+    background-color: #45a049;
+}
+
+.regionImage {
+    max-width: 300px;
+    border: 2px solid #282c34;
+    max-height: 150px;
+    border-radius: 10px;
+}
+
+.heading {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.dishesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.dishCard, .addCard {
+    width: 300px;
+    height: 300px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    overflow: hidden;
+}
+
+.dishCard:hover, .addCard:hover {
+    transform: translateY(-12px);
+}
+/* ManageDishesScreen.module.css */
+.dishHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.dishImageSmall {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.ingredientImageSmall {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.removeButton {
+    background-color: #f44336;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: auto; /* Align to the far right */
+}
+
+.removeButton:hover {
+    background-color: #d32f2f;
+}
+
+/* Additional styles remain the same */
+
+.addCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #282c34;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.plusSign {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.dishImage {
+    width: 80%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.options {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.editButton, .deleteButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+}
+
+.editButton {
+    background-color: #2196F3;
+}
+
+.deleteButton {
+    background-color: #f44336;
+}
+
+.editButton:hover {
+    background-color: #1976D2;
+}
+
+.deleteButton:hover {
+    background-color: #d32f2f;
+}
+
+.editForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.editForm h3 {
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.inputField {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    height: 100px;
+    resize: vertical;
+    width: 100%;
+}
+
+.ingredientList, .stepList {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+
+.ingredientItem, .stepItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.ingredientItem input, .stepItem input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+
+.addButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.addButton:hover {
+    background-color: #45a049;
+}
+
+.modalActions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.saveButton {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.saveButton:hover {
+    background-color: #45a049;
+}
+
+.cancelButton {
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cancelButton:hover {
+    background-color: #d32f2f;
+}

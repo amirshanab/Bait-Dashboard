@@ -1,18 +1,77 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styles from './Sidebar.module.css'; // Import the CSS module
 
 const Sidebar = () => {
     return (
         <aside className={styles.sidebar}>
             <ul className={styles.linkList}>
-                <li className={styles.linkItem}><Link to="/" className={styles.link}>Dashboard</Link></li>
-                <li className={styles.linkItem}><Link to="/analytics" className={styles.link}>Analytics</Link></li>
-                <li className={styles.linkItem}><Link to="/manage-products" className={styles.link}>Manage Products</Link></li>
-                <li className={styles.linkItem}><Link to="/manage-users" className={styles.link}>Manage Users</Link></li>
-                <li className={styles.linkItem}><Link to="/add-product" className={styles.link}>Add Product</Link></li>
-                <li className={styles.linkItem}><Link to="/add-recipe" className={styles.link}>Add Dish</Link></li>
-                <li className={styles.linkItem}><Link to="/manage-orders" className={styles.link}>Manage Orders</Link>
+                <li className={styles.linkItem}>
+                    <NavLink
+                        to="/"
+                        className={({ isActive }) => isActive ? styles.activeLink : styles.link}
+                        end
+                    >
+                        Dashboard
+                    </NavLink>
+                </li>
+                <li className={styles.linkItem}>
+                    <NavLink
+                        to="/analytics"
+                        className={({ isActive }) => isActive ? styles.activeLink : styles.link}
+                    >
+                        Analytics
+                    </NavLink>
+                </li>
+                <li className={styles.linkItem}>
+                    <NavLink
+                        to="/manage-products"
+                        className={({ isActive }) => isActive ? styles.activeLink : styles.link}
+                    >
+                        Manage Products
+                    </NavLink>
+                </li>
+                <li className={styles.linkItem}>
+                    <NavLink
+                        to="/manage-users"
+                        className={({ isActive }) => isActive ? styles.activeLink : styles.link}
+                    >
+                        Manage Users
+                    </NavLink>
+                </li>
+                <li className={styles.linkItem}>
+                    <NavLink
+                        to="/add-product"
+                        className={({ isActive }) => isActive ? styles.activeLink : styles.link}
+                    >
+                        Add Product
+                    </NavLink>
+                </li>
+                <li className={styles.linkItem}>
+                    <NavLink
+                        to="/manage-orders"
+                        className={({ isActive }) => isActive ? styles.activeLink : styles.link}
+                    >
+                        Manage Orders
+                    </NavLink>
+                </li>
+                <li className={styles.linkItem}>
+                    <NavLink
+                        to="/inventory"
+                        className={({ isActive }) => isActive ? styles.activeLink : styles.link}
+                    >
+                        Inventory
+                    </NavLink>
+                </li>
+                <li className={styles.linkItem}>
+                    <li className={styles.linkItem}>
+                        <NavLink
+                            to="/manage-regions"
+                            className={({isActive}) => isActive ? styles.activeLink : styles.link}
+                        >
+                            Manage Dishes
+                        </NavLink>
+                    </li>
                 </li>
             </ul>
         </aside>
