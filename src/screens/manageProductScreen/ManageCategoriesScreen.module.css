@@ -4,40 +4,22 @@
     margin: 0 auto;
 }
 
-.backButton {
-    height: 60px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.heading {
+    font-size: 28px;
     margin-bottom: 20px;
+    text-align: center;
 }
 
-.backButton:hover {
-    background-color: #45a049;
-}
-
-.productsContainer {
+.categoriesContainer {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
 }
-.searchBar {
-    width: 96%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
 
-
-.productCard, .addCard {
-    width: 235px;
+.categoryCard, .addCard {
+    width: 245px;
     height: 280px;
     background-color: #f4f4f4;
     border-radius: 10px;
@@ -52,11 +34,11 @@
     transition: transform 0.2s ease-in-out;
 }
 
-.productCard:hover, .addCard:hover {
+.categoryCard:hover, .addCard:hover {
     transform: translateY(-12px);
 }
 
-.productImage {
+.categoryImage {
     width: 80%;
     height: 150px;
     object-fit: cover;
@@ -105,6 +87,7 @@
     font-weight: bold;
 }
 
+
 .plusSign {
     font-size: 50px;
     margin-bottom: 10px;
@@ -132,24 +115,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
-.fieldContainer {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.fieldContainer label {
-    margin-left: 10px;
-    font-size: 16px;
-    color: #333;
-}
-
-.fieldLabel {
-    margin-left: 10px;
-    font-size: 16px;
-    color: #333;
-}
-
 
 .inputField {
     width: 100%;
@@ -166,6 +131,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     height: 100px;
+    resize: vertical;
 }
 
 .modalActions {
@@ -198,4 +164,12 @@
 
 .cancelButton:hover {
     background-color: #d32f2f;
+}
+.searchInput {
+    width: 96%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
 }

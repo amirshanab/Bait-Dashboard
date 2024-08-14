@@ -5,10 +5,10 @@ import styles from './Dashboard.module.css';
 function Dashboard() {
     return (
         <div className={styles.dashboardContainer}>
-            <Link to="/add-product">
+            <Link to = "/manage-categories">
                 <div className={styles.button}>
-                    <img src='https://cdn-icons-png.flaticon.com/512/10608/10608883.png' alt="Add Product" className={styles.buttonImage} />
-                    <span>Add Product</span>
+                    <img src='https://cdn-icons-png.flaticon.com/128/10112/10112509.png' alt="Manage Categories" className={styles.buttonImage} />
+                    <span>Manage Categories</span>
                 </div>
             </Link>
             <Link to="/analytics">
@@ -17,12 +17,7 @@ function Dashboard() {
                     <span>Analytics</span>
                 </div>
             </Link>
-            <Link to="/manage-products">
-                <div className={styles.button}>
-                    <img src='https://cdn-icons-png.flaticon.com/128/10112/10112509.png' alt="Manage Products" className={styles.buttonImage} />
-                    <span>Manage Products</span>
-                </div>
-            </Link>
+
             <Link to="/manage-orders">
                 <div className={styles.button}>
                     <img src='https://cdn-icons-png.flaticon.com/128/16963/16963052.png' alt="Manage Orders" className={styles.buttonImage} />

@@ -25,34 +25,27 @@ const Sidebar = () => {
                 </li>
                 <li className={styles.linkItem}>
                     <NavLink
-                        to="/manage-products"
-                        className={({ isActive }) => isActive ? styles.activeLink : styles.link}
-                    >
-                        Manage Products
-                    </NavLink>
-                </li>
-                <li className={styles.linkItem}>
-                    <NavLink
                         to="/manage-users"
                         className={({ isActive }) => isActive ? styles.activeLink : styles.link}
                     >
                         Manage Users
                     </NavLink>
                 </li>
-                <li className={styles.linkItem}>
-                    <NavLink
-                        to="/add-product"
-                        className={({ isActive }) => isActive ? styles.activeLink : styles.link}
-                    >
-                        Add Product
-                    </NavLink>
-                </li>
+
                 <li className={styles.linkItem}>
                     <NavLink
                         to="/manage-orders"
                         className={({ isActive }) => isActive ? styles.activeLink : styles.link}
                     >
                         Manage Orders
+                    </NavLink>
+                </li>
+                <li className={styles.linkItem}>
+                    <NavLink
+                        to="/manage-categories"
+                        className={({ isActive }) => isActive ? styles.activeLink : styles.link}
+                    >
+                        Manage Categories
                     </NavLink>
                 </li>
                 <li className={styles.linkItem}>

@@ -1,107 +1,139 @@
-.overlay {
+.modalOverlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     z-index: 1000;
 }
 
-.container {
-    background-color: #fff;
-    color: #333;
-    padding: 20px;
+.modal {
+    background: white;
     border-radius: 10px;
-    max-width: 600px; /* Smaller width */
-    width: 90%;
-    max-height: 80%; /* Smaller height */
-    overflow-y: auto; /* Scrollable */
+    max-width: 1500px;
+    max-height: 550px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto; /* Makes the modal content scrollable */
     position: relative;
 }
 
-.heading {
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.details {
-    text-align: left;
+.modalHeader {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+    z-index: 1010;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .closeButton {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 50px; /* Increased font size */
-    cursor: pointer;
-    color: #f44336; /* Red color for close button */
-}
-
-.itemList {
-    list-style: none;
-    padding: 0;
-}
-
-.item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px; /* Reduced margin */
-    background-color: #f8f8f8;
-    padding: 10px; /* Reduced padding */
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.itemImage {
-    width: 50px; /* Reduced width */
-    height: 50px; /* Reduced height */
-    margin-right: 10px; /* Reduced margin */
-    border-radius: 8px;
-}
-
-.itemDetails {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    width: 100%;
-}
-
-.itemActions {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-left: auto; /* Push buttons to the right */
-}
-
-.deleteButton, .replaceButton {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.deleteButton {
     background-color: #f44336;
     color: white;
+    border: none;
+    padding: 15px 30px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
-.replaceButton {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.deleteButton:hover {
+.closeButton:hover {
     background-color: #d32f2f;
 }
 
-.replaceButton:hover {
+.productList {
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+    padding-top: 20px; /* Adding padding to account for the fixed header */
+}
+
+.productItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
+    font-size: 14px;
+}
+
+.productImage {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    margin-bottom: 8px;
+    border-radius: 5px;
+}
+
+.productDetails {
+    text-align: center;
+    font-size: 14px;
+}
+
+.removeButton {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 8px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+.removeButton:hover {
+    background-color: #d32f2f;
+}
+.buttonContainer {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ccc;
+    z-index: 1010;
+}
+
+.addButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.addButton:hover {
+    background-color: #45a049;
+}
+
+.saveButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.saveButton:hover {
     background-color: #45a049;
 }
