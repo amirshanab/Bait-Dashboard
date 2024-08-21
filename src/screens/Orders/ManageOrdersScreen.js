@@ -198,7 +198,7 @@ const ManageOrdersScreen = () => {
                             <p><strong>Phone:</strong> {order.user?.phoneNumber || 'Unknown'}</p>
                             <p><strong>Payment Method:</strong> {order.paymentMethod}</p>
                             <p><strong>Scheduled Delivery:</strong> {order.scheduledDelivery}</p>
-                            <p><strong>Total Amount:</strong> ${order.totalAmount}</p>
+                            <p><strong>Total Amount:</strong> ₪{order.totalAmount}</p>
                         </div>
                         <div className={styles.buttonContainer}>
                             <button

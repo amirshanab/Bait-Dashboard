@@ -47,7 +47,7 @@ const OrderDetails = ({ order, onClose }) => {
                             <img src={product.Image} alt={product.Name} className={styles.productImage} />
                             <div className={styles.productDetails}>
                                 <p><strong>{product.Name}</strong></p>
-                                <p>Price: ${product.Price}</p>
+                                <p>Price: ₪{product.Price}</p>
                                 <p>Quantity: {product.quantity}</p>
                             </div>
                             <button

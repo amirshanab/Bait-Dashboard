@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { collection, getDocs, doc, deleteDoc, addDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 import ManageDishesScreen from './ManageDishesScreen';
+import PublicDishesScreen from './PublicDishesScreen'; // Import the Public Dishes screen
 import styles from './ManageRegionsScreen.module.css';
 
 const ManageRegionsScreen = () => {
     const [regions, setRegions] = useState([]);
     const [selectedRegion, setSelectedRegion] = useState(null);
+    const [showPublicDishes, setShowPublicDishes] = useState(false); // State to handle the display of public dishes screen
     const [isEditing, setIsEditing] = useState(false);
     const [editRegionData, setEditRegionData] = useState({ name: '', image: '' });
     const [isAdding, setIsAdding] = useState(false);
@@ -63,6 +65,11 @@ const ManageRegionsScreen = () => {
         setRegions([...regions, { id: newRegionRef.id, ID: regionID, ...newRegionData }]);
         setIsAdding(false);
     };
+
+    if (showPublicDishes) {
+        // If the admin clicked on the Public Dishes card, show the PublicDishesScreen
+        return <PublicDishesScreen goBack={() => setShowPublicDishes(false)} />;
+    }
 
     return (
         <div className={styles.container}>
@@ -125,6 +132,13 @@ const ManageRegionsScreen = () => {
                         <span className={styles.plusSign}>+</span>
                         <p>Add New Region</p>
                     </div>
+
+                    {/* New card for Public Dishes */}
+                    <div className={styles.regionCard} onClick={() => setShowPublicDishes(true)}>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPfa137nNKsYDxkns5XRjxqQTzfYANMj6EoQ&s" alt="Public Dishes" className={styles.regionImage} />
+                        <p>Public Dishes</p>
+                    </div>
+
                     {regions.map(region => (
                         <div key={region.id} className={styles.regionCard} onClick={() => handleRegionClick(region)}>
                             <img src={region.image} alt={region.name} className={styles.regionImage} />

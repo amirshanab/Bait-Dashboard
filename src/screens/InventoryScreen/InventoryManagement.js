@@ -82,7 +82,7 @@ const InventoryManagement = () => {
                     <div key={product.id} className={styles.productCard}>
                         <img src={product.Image} alt={product.Name} />
                         <p><strong>{product.Name}</strong></p>
-                        <p>Price: ${product.Price}</p>
+                        <p>Price: ₪{product.Price}</p>
                         <p>Stock: {product.Stock}</p>
                         <div className={styles.actions}>
                             <button className={styles.editButton} onClick={() => handleEdit(product)}>Edit</button>

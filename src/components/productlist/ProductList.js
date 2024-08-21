@@ -18,7 +18,7 @@ const ProductList = ({ products, onDelete, onEdit }) => {
             {products.map((product) => (
                 <tr key={product.id}>
                     <td className={styles.td}>{product.Name}</td> {/* Ensure this uses product.Name */}
-                    <td className={styles.td}>${product.Price}</td>
+                    <td className={styles.td}>₪{product.Price}</td>
                     <td className={styles.td}>{product.Category}</td>
                     <td className={styles.td}>{product.Description}</td>
                     <td className={styles.td}>{product.Scale ? 'Scale' : 'Quantity'}</td>

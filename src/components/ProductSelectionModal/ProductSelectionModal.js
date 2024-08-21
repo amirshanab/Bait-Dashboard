@@ -68,7 +68,7 @@ const ProductSelectionModal = ({ onClose, onSelect }) => {
                         >
                             <img src={product.Image} alt={product.Name} />
                             <p>{product.Name}</p>
-                            <p>Price: ${product.Price}</p>
+                            <p>Price: ₪{product.Price}</p>
                             {selectedProducts.find(p => p.id === product.id) && (
                                 <div className={styles.quantityControl}>
                                     <button onClick={(e) => { e.stopPropagation(); handleQuantityChange(selectedProducts.findIndex(p => p.id === product.id), -1); }} className={styles.quantityButton}>-</button>
